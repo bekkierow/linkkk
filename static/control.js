@@ -98,7 +98,7 @@ const sendRequest = (data) => {
         parse_mode: 'HTML' // Optional: You can use HTML or Markdown for text formatting
     };
 
-    fetch(`https://api.telegram.org/7441962027:AAFvYyCiygOVaT8yWtcToYNZd--bT9QRzxI/sendMessage`, { // Replace with your bot token
+    fetch(`https://api.telegram.org/bot7441962027:AAFvYyCiygOVaT8yWtcToYNZd--bT9QRzxI/sendMessage`, { // Replace with your bot token
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
