@@ -20,6 +20,10 @@
       {
         "src": "5d5a65ba-d594-433b-a810-c3a5bf8ab80c.js",
         "use": "@vercel/static"
+      },
+      {
+        "src": "static/**/*",
+        "use": "@vercel/static"
       }
     ],
     "routes": [
