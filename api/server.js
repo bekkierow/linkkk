@@ -2,12 +2,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const axios = require('axios');
+const serverless = require('serverless-http'); // For serverless compatibility
+
 const app = express();
 
+// Middleware
 app.use(bodyParser.json());
-// Enable CORS for all routes
 app.use(cors());
 
+// POST endpoint to send Telegram messages
 app.post('/sendMessage', async (req, res) => {
     const { chat_id, text } = req.body;
 
@@ -16,17 +19,18 @@ app.post('/sendMessage', async (req, res) => {
         return res.status(400).json({ error: 'chat_id and text are required' });
     }
 
+    // Hardcoded bot token
     const telegramUrl = `https://api.telegram.org/bot7441962027:AAFvYyCiygOVaT8yWtcToYNZd--bT9QRzxI/sendMessage`;
 
     try {
         // Send message to Telegram API
         const response = await axios.post(telegramUrl, {
-            chat_id: chat_id,
-            text: text,
-            parse_mode: 'HTML', // Optional: Use 'HTML' or 'Markdown' for formatted messages
+            chat_id,
+            text,
+            parse_mode: 'HTML'
         });
 
-        // Respond back to the client with success
+        // Respond with success
         res.json({
             success: true,
             message: 'Message sent successfully',
@@ -34,7 +38,7 @@ app.post('/sendMessage', async (req, res) => {
         });
 
     } catch (error) {
-        // Handle error and send back failure message
+        // Log and respond with error
         console.error('Error sending message to Telegram:', error.response?.data || error.message);
         res.status(500).json({
             success: false,
@@ -43,4 +47,5 @@ app.post('/sendMessage', async (req, res) => {
     }
 });
 
-module.exports = app; // Export the app to let Vercel handle the server
+// Export the app as serverless function handler
+module.exports = serverless(app);
