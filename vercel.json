@@ -34,14 +34,6 @@
     {
       "src": "/static/(.*)",
       "dest": "/static/$1"
-    },
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)",
-      "status": 404,
-      "dest": "/error.html"
     }
   ]
 }

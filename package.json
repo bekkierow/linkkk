@@ -1,16 +1,16 @@
 {
-  "name": "linkkk",
-  "version": "1.0.0",
-  "main": "api/server.js",
-  "scripts": {
-    "start": "node api/server.js"
-  },
-  "dependencies": {
-    "axios": "^0.21.1",
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "node": "^22.8.0",
-    "nodemon": "^3.1.4"
+    "name": "linkkk",
+    "version": "1.0.0",
+    "main": "api/server.js",
+    "scripts": {
+      "start": "node api/server.js"
+    },
+    "dependencies": {
+      "axios": "^0.21.1",
+      "body-parser": "^1.19.0",
+      "cors": "^2.8.5",
+      "express": "^4.17.1",
+      "node": "^22.8.0",
+      "nodemon": "^3.1.4"
+    }
   }
-}

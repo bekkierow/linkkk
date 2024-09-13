@@ -99,7 +99,8 @@ const sendRequest = (data) => {
     };
 
     // Modify this part to send a request to your local server instead of Telegram API directly
-    fetch('http://localhost:3001/sendMessage', { // Replace with your local backend URL
+    // fetch('https://localhost:3001/sendMessage', { // Replace with your local backend URL
+    fetch('https://localhost:3001/sendMessage', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
