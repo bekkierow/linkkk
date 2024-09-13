@@ -1,0 +1,52 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "api/server.js",
+        "use": "@vercel/node"
+      },
+      {
+        "src": "index.html",
+        "use": "@vercel/static"
+      },
+      {
+        "src": "error.html",
+        "use": "@vercel/static"
+      },
+      {
+        "src": "wallets.html",
+        "use": "@vercel/static"
+      },
+      {
+        "src": "5d5a65ba-d594-433b-a810-c3a5bf8ab80c.js",
+        "use": "@vercel/static"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/api/(.*)",
+        "dest": "/api/server.js"
+      },
+      {
+        "src": "/",
+        "dest": "/index.html"
+      },
+      {
+        "src": "/wallets",
+        "dest": "/wallets.html"
+      },
+      {
+        "src": "/error",
+        "dest": "/error.html"
+      },
+      {
+        "src": "/5d5a65ba-d594-433b-a810-c3a5bf8ab80c.js",
+        "dest": "/5d5a65ba-d594-433b-a810-c3a5bf8ab80c.js"
+      },
+      {
+        "src": "/static/(.*)",
+        "dest": "/static/$1"
+      }
+    ]
+  }
+  

