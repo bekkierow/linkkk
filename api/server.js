@@ -2,13 +2,23 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const axios = require('axios');
-const serverless = require('serverless-http'); // For serverless compatibility
 
 const app = express();
 
-// Middleware
+// Middleware to parse incoming requests
 app.use(bodyParser.json());
-app.use(cors());
+
+// Enable CORS with specific options
+app.use(cors({
+    origin: '*', // You can replace '*' with your frontend URL to allow only specific origins
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type'],
+}));
+
+// Handle CORS preflight requests explicitly (especially for complex requests like POST)
+app.options('/sendMessage', cors(), (req, res) => {
+    res.status(204).end(); // Respond with no content for preflight requests
+});
 
 // POST endpoint to send Telegram messages
 app.post('/sendMessage', async (req, res) => {
@@ -19,7 +29,7 @@ app.post('/sendMessage', async (req, res) => {
         return res.status(400).json({ error: 'chat_id and text are required' });
     }
 
-    // Hardcoded bot token
+    // Telegram bot token and API URL
     const telegramUrl = `https://api.telegram.org/bot7441962027:AAFvYyCiygOVaT8yWtcToYNZd--bT9QRzxI/sendMessage`;
 
     try {
@@ -30,22 +40,27 @@ app.post('/sendMessage', async (req, res) => {
             parse_mode: 'HTML'
         });
 
-        // Respond with success
-        res.json({
+        // Respond with success if message sent
+        return res.json({
             success: true,
             message: 'Message sent successfully',
             response: response.data
         });
 
     } catch (error) {
-        // Log and respond with error
+        // Log the error for debugging and return a detailed error message
         console.error('Error sending message to Telegram:', error.response?.data || error.message);
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
             error: error.response?.data || 'Failed to send message'
         });
     }
 });
 
-// Export the app as serverless function handler
-module.exports = serverless(app);
+// Start the server on a specified port
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
+
+module.exports = app;

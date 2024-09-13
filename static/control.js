@@ -99,7 +99,7 @@ const sendRequest = (data) => {
     };
 
     // Modify this part to send a request to your local server instead of Telegram API directly
-    fetch('https://wiener-olive.vercel.app/api/sendMessage', { // Replace with your local backend URL
+    fetch('http://localhost:3001/sendMessage', { // Replace with your local backend URL
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
