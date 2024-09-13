@@ -11,5 +11,10 @@
       "src": "/(.*)",
       "dest": "/"
     }
-  ]
+  ],
+  "functions": {
+    "*.js": {
+      "regions": ["cdg1", "fra1"]
+    }
+  }
 }
