@@ -3,10 +3,7 @@
   "builds": [
     {
       "src": "api/server.js",
-      "use": "@vercel/node",
-      "config": {
-        "regions": ["blr1"] 
-      }
+      "use": "@vercel/node"
     },
     {
       "src": "*.html",
