@@ -2,35 +2,22 @@
     "version": 2,
     "builds": [
       {
-        "src": "api/**/*", 
+        "src": "api/**/*.js", 
         "use": "@vercel/node"
       },
       {
-        "src": "index.html",
+        "src": "*.html",
         "use": "@vercel/static"
       },
       {
-        "src": "error.html",
-        "use": "@vercel/static"
-      },
-      {
-        "src": "wallets.html",
-        "use": "@vercel/static"
-      },
-      {
-        "src": "5d5a65ba-d594-433b-a810-c3a5bf8ab80c.js",
-        "use": "@vercel/static"
-      },
-      {
-        "src": "static/**/*",
+        "src": "static/*",
         "use": "@vercel/static"
       }
     ],
     "routes": [
       {
-        "src": "/api/(.*)",
-        "dest": "/api/$1",
-        "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+        "src": "/api/(.*)", 
+        "dest": "/api/$1"
       },
       {
         "src": "/",
