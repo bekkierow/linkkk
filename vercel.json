@@ -9,14 +9,21 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/api/index.js"
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/"
     }
   ],
   "functions": {
+    "api/test.js": {
+      "memory": 3009,
+      "maxDuration": 30
+    },
     "api/*.js": {
       "memory": 3009,
-      "maxDuration": 30,
-      "regions": ["cdg1"] 
+      "maxDuration": 30
     }
   }
 }
