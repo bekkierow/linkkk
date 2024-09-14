@@ -16,12 +16,12 @@ app.use(cors({
 }));
 
 // Handle CORS preflight requests explicitly (especially for complex requests like POST)
-app.options('/sendMessage', cors(), (req, res) => {
+app.options('/api/sendMessage', cors(), (req, res) => {
     res.status(204).end(); // Respond with no content for preflight requests
 });
 
 // POST endpoint to send Telegram messages
-app.post('/sendMessage', async (req, res) => {
+app.post('/api/sendMessage', async (req, res) => {
     const { chat_id, text } = req.body;
 
     // Validate incoming request data
@@ -58,7 +58,7 @@ app.post('/sendMessage', async (req, res) => {
 });
 
 // Start the server on a specified port
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
